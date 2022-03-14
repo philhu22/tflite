@@ -20,6 +20,8 @@ Total price is 128 €.
   
 I have also purchased a [Logitech HD 720p](https://www.logitech.com/en-us/products/webcams/c270-hd-webcam.960-000694.html) webcam. Add 30 € to the budget.
 
+![tflite01](/assets/images/tflite01-00.jpg)
+
 ## Setting up my Raspberry Pi
 ### Install the OS
 The first thing to do after you have received your RPI is to install the OS. The easiest way is to use the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) on a computer with a SD card reader. Put the SD card you have received into the reader and run the Imager. Here are the options I have selected: 
@@ -104,4 +106,4 @@ sudo apt-get install libatlas-base-dev
 ## It works!
 You should see the object detection running:
 
-![tflite01](/assets/images/tflite01.png)
+![tflite01](/assets/images/tflite01-01.png)
