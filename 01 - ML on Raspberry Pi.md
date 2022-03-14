@@ -1,4 +1,14 @@
+This guide is for beginners without experience with TensorFlow Lite on Rapsberry Pi. It is written for guys like me who had to discover how to setup a Raspberry Pi for running the [TensorFlow's Introduction to object detection on Raspberry Pi](https://www.youtube.com/watch?v=mNjXEybFn98&list=PLQY2H8rRoyvz_anznBg6y3VhuSMcpN9oe). 
 
+
+- [Shopping List](#shopping-list)
+- [Setting up my Raspberry Pi](#setting-up-my-raspberry-pi)
+  - [Install the OS](#install-the-os)
+  - [Connect with SSH](#connect-with-ssh)
+    - [PuTTY](#putty)
+    - [OpenSSH with Xming](#openssh-with-xming)
+- [Let's go with TF Lite](#lets-go-with-tf-lite)
+- [It works!](#it-works)
 
 ## Shopping List
 I decided to buy a Raspberry-Pi 4 model B with 8Gb of RAM. I choose the Essential Pack from the [MC Hobby](https://shop.mchobby.be/) shop which is very close to my home. My shopping list:
@@ -9,7 +19,6 @@ I decided to buy a Raspberry-Pi 4 model B with 8Gb of RAM. I choose the Essentia
 Total price is 128 €. 
   
 I have also purchased a [Logitech HD 720p](https://www.logitech.com/en-us/products/webcams/c270-hd-webcam.960-000694.html) webcam. Add 30 € to the budget.
-
 
 ## Setting up my Raspberry Pi
 ### Install the OS
