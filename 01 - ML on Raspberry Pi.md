@@ -42,14 +42,56 @@ Using OpenSSH from a terminal is a bit more demanding. First, you need to instal
   The "-rootless" parameter specifies that a transparent root window is used.  
 
 - Logon as root through ssh: `ssh -Y rpi1.local` (specify your RPI hostname).
-- In the RPI terminal prompt, you have to set the display as it's not the default display port number: `setenv DISPLAY pchost:1322.0`
+- In the RPI terminal prompt, you have to set the display as it's not the default display port number: `export DISPLAY=pchost:1322.0` (specify your Windows host)
 - Test that X11 forwarding is properly configured with e.g. `lxterminal &`
 
 
 ## Let's go with TF Lite
 
-We are now ready to install our first TensorFlow Lite model. For this, we will follow the TF tutorial [Introduction to object detection on Raspberry Pi](https://www.youtube.com/watch?v=mNjXEybFn98&list=PLQY2H8rRoyvz_anznBg6y3VhuSMcpN9oe). Watch the video to find everything you need to know. I will just repeat here the instructions to execute. 
+We are now ready to install our first TensorFlow Lite model. For this, we will follow the TF tutorial [Introduction to object detection on Raspberry Pi](https://www.youtube.com/watch?v=mNjXEybFn98&list=PLQY2H8rRoyvz_anznBg6y3VhuSMcpN9oe). Watch the 15' video to find everything you need to know. I will just repeat here the [instructions](https://gist.github.com/khanhlvg/bbeb5e4ccfca6cbcf18508a44f5964be) to execute (with minor changes in the paths): 
 
-<script src="https://gist.github.com/khanhlvg/bbeb5e4ccfca6cbcf18508a44f5964be.js"></script>
+```shell
+# Show your Raspberry Pi OS version.
+cat /etc/os-release
+# VERSION_ID="11"  ok
+
+# Update packages on your Raspberry Pi OS.
+sudo apt-get update
+
+# Check your Python version. You should have Python 3.7 or later.
+python3 --version
+# Python 3.9.2 ok
+
+# Install virtualenv and upgrade pip.
+python3 -m pip install --user --upgrade pip
+python3 -m pip install --user virtualenv
+
+# Create a Python virtual environment for the TFLite samples (optional but strongly recommended)
+mkdir venv
+python3 -m venv ~/venv/tflite
+
+# Run this command whenever you open a new Terminal window/tab to activate the environment.
+source ~/venv/tflite/bin/activate
+
+# Clone the TensorFlow example repository with the TFLite Raspberry Pi samples.
+mkdir tflite
+cd tflite
+git clone https://github.com/tensorflow/examples.git
+cd examples/lite/examples/object_detection/raspberry_pi
+
+# Install dependencies required by the sample
+sh setup.sh
+
+# Run the object detection sample
+python detect.py
+
+####
+# If you see an error running the sample:
+# ImportError: libcblas.so.3: cannot open shared object file: No such file or directory
+# you can fix it by installing an OpenCV dependency that is missing on your Raspberry Pi.
+sudo apt-get install libatlas-base-dev
+```
 
 ## It works!
+You should see the object detection running: <br/>
+![tflite01](/assets/images/tflite01.png)
