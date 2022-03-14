@@ -50,7 +50,7 @@ Using OpenSSH from a terminal is a bit more demanding. First, you need to instal
 
 We are now ready to install our first TensorFlow Lite model. For this, we will follow the TF tutorial [Introduction to object detection on Raspberry Pi](https://www.youtube.com/watch?v=mNjXEybFn98&list=PLQY2H8rRoyvz_anznBg6y3VhuSMcpN9oe). Watch the 15' video to find everything you need to know. I will just repeat here the [instructions](https://gist.github.com/khanhlvg/bbeb5e4ccfca6cbcf18508a44f5964be) to execute (with minor changes in the paths): 
 
-```shell
+```bash
 # Show your Raspberry Pi OS version.
 cat /etc/os-release
 # VERSION_ID="11"  ok
@@ -93,5 +93,6 @@ sudo apt-get install libatlas-base-dev
 ```
 
 ## It works!
-You should see the object detection running: <br/>
+You should see the object detection running:
+
 ![tflite01](/assets/images/tflite01.png)
