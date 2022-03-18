@@ -53,7 +53,7 @@ Using OpenSSH from a terminal is a bit more demanding. First, you need to instal
   The "-rootless" parameter specifies that a transparent root window is used.  
 
 - Logon as root through ssh: `ssh -Y rpi1.local` (specify your RPI hostname).
-- In the RPI terminal prompt, you have to set the display as it's not the default display port number: `export DISPLAY=pchost:1322.0` (specify your Windows host)
+- In the RPI terminal prompt, you have to set the display as it's not the default display port number:<br/> `export DISPLAY=pchost:1322.0` (specify your Windows host)
 - Test that X11 forwarding is properly configured with e.g. `lxterminal &`
 
 

@@ -1,10 +1,13 @@
 
 ## Create a Training Dataset
 ### Collect the images
-#### download
+#### training
 I did what most data scientist beginners do: use Google to search pictures in huge repositories like [unplash](https://unsplash.com/), [istockphotos](https://www.istockphoto.com/), [pixabay](https://pixabay.com/). I used the Chrome extension [Download All Images](https://download-all-images.mobilefirst.me) to quickly save the images in zip files. After unzipping, I moved all (543) images in a single folder and inspected them visually to remove images with no key or many keys. I tried to remove also duplicates. When done, my collection counted 292 images.
+#### validation
+
 #### rename
 Then, I changed the default names to something simpler to read: key(i), where i is the file index. On Windows, using File Explorer to batch rename files is usually the easiest way. To batch rename files, just select all the files you want to rename, press the F2 (alternatively, right-click and select rename), then enter the name you want on the first file. Press Enter to change the names for all other selected files. This method adds sequential numbers in parentheses beside each file name:
+
 ![keys1](/assets/images/keys1.png)
 #### resize
 The images used in the training video have a size of 800 x 600 pixels So, I resized all images to that dimensions. To do that, I used the [PowerToys Image Resizer utility for Windows](https://docs.microsoft.com/en-us/windows/powertoys/image-resizer) with the following options:
