@@ -20,7 +20,16 @@ Alternatively, you can open the Command Palette (`Ctrl+Shift+P`) and type the co
  Enter the **iothubowner** policy connection string for the IoT hub that your IoT device connects to in the pop-up window. To find this string, go to the Azure Portal and open your IoT Hub blade. Select `Shared access policies` under `Security settings`, then click on `iothubowner` and copy the Primary connection string.
 
 ### Running the Node.js sample app
+Follow the instructions given in [Connect Raspberry Pi to Azure IoT Hub (Node.js)](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started). There is no difficulty. As I did not want to waste time with the installation of the sensor, I have specified `simulatedData: true` in config.json. Then, run the application with:
+```bash
+sudo node index.js '<YOUR AZURE IOT HUB DEVICE CONNECTION STRING>'
+# Make sure you copy-paste the device connection string into the single quotes.
+```
+You should see the following output that shows the sensor data and the messages that are sent to your IoT hub:
+
 ![iot2](/assets/images/iot2.png)
+
+You can now monitor the messages received by the IoT hub in VS Code:
 
 ![iot1](/assets/images/iot1.png)
 
@@ -28,9 +37,25 @@ Alternatively, you can open the Command Palette (`Ctrl+Shift+P`) and type the co
 
 
 ### Running the C sample app
+It was a bit less straighforward to run the C sample app. Many includes in `main.c` could not be resolved after running `setup.sh`. The root cause: an error in the file `setup.sh` at line 15 (in my version of March 22 2022). You must replace the line
+
+`cd ../../cmake/iotsdk_linux`
+
+by
+
+`cd ../../cmake`
 
 ![iot3](/assets/images/iot3.png)
 
+Then, build and run with
+```bash
+# use simulated data
+sudo ./setup.sh --simulated-data
+
+# run 
+sudo ./app '<DEVICE CONNECTION STRING>'
+```
+You should see the sensor data and the messages that are sent to your IoT hub. See the Node.js section above to monitor these messages in VS Code.
 
 ## Setup Azure IoT C SDK
 ### Install the azure-iot-sdk-c package
