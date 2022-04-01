@@ -1,4 +1,4 @@
-# Native Tensorflow Lite build on Raspberry Pi
+# Native C++ Tensorflow Lite build on Raspberry Pi 4
 
 **Objective:** 
 
@@ -14,7 +14,7 @@ Make a native C++ build of TensorFlow Lite on Raspberry Pi 4 and run the TensorF
 
 <!-- code_chunk_output -->
 
-- [Native Tensorflow Lite build on Raspberry Pi](#native-tensorflow-lite-build-on-raspberry-pi)
+- [Native C++ Tensorflow Lite build on Raspberry Pi 4](#native-c-tensorflow-lite-build-on-raspberry-pi-4)
   - [Pre-installations steps](#pre-installations-steps)
     - [Update the environment](#update-the-environment)
     - [Update the CC Cross-Compiler Toolchains](#update-the-cc-cross-compiler-toolchains)
@@ -199,7 +199,7 @@ Check that the proper gcc Toolchains is used (in my case 10.3.1):
 
 ![tfbuild1](/assets/images/tfbuild1.png)
 
-This creates libtensorflow-lite.a in the current directory `tflite_build`
+This creates `libtensorflow-lite.a` in the current directory `tflite_build`.
 
 ## Build Flatbuffers
 The TensorFlow Lite flat buffers are also needed. Please use the following commands copied from the TensorFlow Lite [Build with CMake](https://www.tensorflow.org/lite/guide/build_cmake#specifics_of_kernel_unit_tests_cross-compilation) guide:
@@ -233,7 +233,6 @@ Finally, we can build:
 ```bash
 cmake --build . 
 ```
-
 
 After a successful build, try the minimal application with
 ```bash
