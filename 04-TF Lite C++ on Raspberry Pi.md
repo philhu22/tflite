@@ -1,6 +1,8 @@
 # Native Tensorflow Lite build on Raspberry Pi
 
-**Objective:** Make a native C++ build of TensorFlow Lite on Raspberry Pi 4 and run the TensorFlow Lite minimal application (without XNNPACK).
+**Objective:** 
+
+Make a native C++ build of TensorFlow Lite on Raspberry Pi 4 and run the TensorFlow Lite minimal application (without XNNPACK).
 
 **Main references:**
 - [Build TensorFlow Lite with CMake](https://www.tensorflow.org/lite/guide/build_cmake#create_a_cmake_project_which_uses_tensorflow_lite)
@@ -39,8 +41,7 @@
    VERSION_CODENAME=bullseye
    ```
 
-* EEPROM version
-See [Q-engineering's note](https://qengineering.eu/install-opencv-4.5-on-raspberry-pi-4.html) for more details.
+* Update the EEPROM version if needed. See [Q-engineering's note](https://qengineering.eu/install-opencv-4.5-on-raspberry-pi-4.html) for more details.
 
    ```bash
    # to get the current status
@@ -50,7 +51,7 @@ See [Q-engineering's note](https://qengineering.eu/install-opencv-4.5-on-raspber
    $ sudo reboot
    ```
 
-* Install new version of installed software and make sure you have all important packages:
+* Update installed software and make sure you have all important packages:
    ```bash
    sudo apt update && sudo apt dist-upgrade
    sudo apt-get install build-essential gawk gcc g++ gfortran git texinfo bison  wget bzip2 libncurses-dev libssl-dev openssl zlib1g-dev
@@ -60,7 +61,7 @@ There is an [issue](https://github.com/abhiTronix/raspberry-pi-cross-compilers/i
 
 The Raspberry Pi GCC Toolchains Files are available on [SourceForge](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/) and on [Abhishek Thakur's github](https://github.com/abhiTronix/raspberry-pi-cross-compilers). We need the latest version of the [Native Compiler Toolchains](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/) which is [GCC10.3.0](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/) at the time of writing this note.
 
-Here is a summary of the [instructions](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Native-Compiler:-Installation-Instructions) for a Rspberry Pi 4:
+Here is a summary of the [instructions](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Native-Compiler:-Installation-Instructions) for a Raspberry Pi 4:
 
 * Download [native-gcc-10.3.0-pi_3+.tar.gz](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/Raspberry%20Pi%203A%2B%2C%203B%2B%2C%204/) or:
    <br/>
@@ -218,15 +219,15 @@ Let's try now to build and run the [TensorFlow Lite C++ minimal example](https:/
 cd ~/tensorflow
 
 # Create CMake build directory and run CMake tool
-mkdir minimal_build
-cd minimal_build
+mkdir minimal_build_no_xnnpack
+cd minimal_build_no_xnnpack
 # -DTFLITE_ENABLE_XNNPACK=OFF to disable XNNPACK which is enabled by default
 cmake ../tensorflow_src/tensorflow/lite/examples/minimal -DTFLITE_ENABLE_XNNPACK=OFF 
 ```
 This creates a new build directory in which TensorFlow Lite will be built again. So, we have to make the same changes we made above to have no error during the build. See Step 3 above to remember the fixes. Here is the files to edit:
 ```bash
-sudo nano /home/toto/tensorflow/minimal_build/abseil-cpp/absl/debugging/symbolize.cc
-sudo nano /home/toto/tensorflow/minimal_build/flatbuffers/src/util.cpp
+sudo nano /home/toto/tensorflow/minimal_build_no_xnnpack/abseil-cpp/absl/debugging/symbolize.cc
+sudo nano /home/toto/tensorflow/minimal_build_no_xnnpack/flatbuffers/src/util.cpp
 ```
 Finally, we can build:
 ```bash
@@ -238,7 +239,7 @@ After a successful build, try the minimal application with
 ```bash
 ./minimal mymodel.tflite
 ```
-You can download a TF Lite model from the [TensorFlow Hub](https://tfhub.dev/s?deployment-format=lite). For this example, I used the [EfficientDet-Lite0 Object detection model](https://tfhub.dev/tensorflow/lite-model/efficientdet/lite0/detection/default/1).
+You can download a TF Lite model from the [TensorFlow Hub](https://tfhub.dev/s?deployment-format=lite). For this example, I used the [EfficientDet-Lite0 Object detection model](https://tfhub.dev/tensorflow/lite-model/efficientdet/lite0/detection/default/1):
 
 ```bash
 ./minimal efficientdet_lite0.tflite
@@ -258,6 +259,8 @@ Tensor   3 fpn_cells/cell_2/fnode... kTfLiteInt32    kTfLiteMmapRo      8       
 Tensor   4 fpn_cells/cell_2/fnode... kTfLiteInt32    kTfLiteMmapRo      8        / 0.00 [2] [3730308, 3730316)
 ...
 ```
+
+We are done. We can now build C++ TensorFlow Lite application natively on a Raspberry Pi 4.
 
 
 
