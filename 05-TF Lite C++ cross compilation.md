@@ -24,7 +24,7 @@ Build TensorFlow Lite applications on WSL2 for ARM64 architectures and particula
 
 
 # Build for ARMv7 NEON enabled
-We followed the [TensorFlow Lite instructions][(https://www.tensorflow.org/lite/guide/build_cmake_arm#build_for_aarch64_arm64](https://www.tensorflow.org/lite/guide/build_cmake_arm#build_for_armv7_neon_enabled)):
+We followed the [TensorFlow Lite instructions](https://www.tensorflow.org/lite/guide/build_cmake_arm#build_for_armv7_neon_enabled):
 
 - Download and install the GCC ARM toolchain under ${HOME}/toolchains
     <br/>
