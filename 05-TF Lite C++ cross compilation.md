@@ -2,7 +2,7 @@
 
 **Objective:** 
 
-Build TensorFlow Lite applications on WSL2 for ARM64 architectures and particularly for Raspberry PI 4 devices.
+Build TensorFlow Lite applications on WSL2 for ARMv7 architecture and particularly for Raspberry PI 4 devices.
 
 **Main references:**
 - [Cross compilation TensorFlow Lite with CMake](https://www.tensorflow.org/lite/guide/build_cmake_arm#build_for_aarch64_arm64)
@@ -24,7 +24,12 @@ Build TensorFlow Lite applications on WSL2 for ARM64 architectures and particula
 
 
 # Build for ARMv7 NEON enabled
-We followed the [TensorFlow Lite instructions](https://www.tensorflow.org/lite/guide/build_cmake_arm#build_for_armv7_neon_enabled):
+First, make sure you have an ARMv7 architecture with the following command on your Raspberry PI:
+```bash
+uname -a
+Linux rpi1 5.10.103-v7l+ #1530 SMP Tue Mar 8 13:05:01 GMT 2022 armv7l GNU/Linux
+```
+Then on your Windows host, open a WSL2 terminal and follow the [TensorFlow Lite instructions](https://www.tensorflow.org/lite/guide/build_cmake_arm#build_for_armv7_neon_enabled). Here are the commands I have executed:
 
 - Download and install the GCC ARM toolchain under ${HOME}/toolchains
     <br/>
@@ -36,7 +41,7 @@ We followed the [TensorFlow Lite instructions](https://www.tensorflow.org/lite/g
     ARMCC_FLAGS="-march=armv7-a -mfpu=neon-vfpv4 -funsafe-math-optimizations -mfp16-format=ieee"
     ARMCC_PREFIX=${HOME}/toolchains/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
     ```
-- Clone TensorFlow repository
+- Clone the TensorFlow repository
    <br/>
     ```bash   
     cd ~
@@ -65,6 +70,7 @@ We followed the [TensorFlow Lite instructions](https://www.tensorflow.org/lite/g
     cmake --build . -j
     ```
     This creates `libtensorflow-lite.a` in the current directory `tflite_build`:
+    <br/>
     ```bash
     ...
     [100%] Built target tensorflow-lite

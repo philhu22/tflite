@@ -57,7 +57,7 @@ Make a native C++ build of TensorFlow Lite on Raspberry Pi 4 and run the TensorF
    sudo apt-get install build-essential gawk gcc g++ gfortran git texinfo bison  wget bzip2 libncurses-dev libssl-dev openssl zlib1g-dev
    ```
 ### Update the CC Cross-Compiler Toolchains
-There is an [issue](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/90) with the installed Raspberry Pi GCC Cross-Compiler Toolchains for Bullseye that prevents to build Tensorflow Lite with gcc. This issue has been resolved in the Toolchains version v3.1.0 or higher. We must install this new version and enable it temporarily for building Tensorflow Lite. 
+There is an [issue](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/90) with the installed Raspberry Pi GCC Compiler Toolchains for Bullseye that prevents to build Tensorflow Lite with gcc. This issue has been resolved in the Toolchains version v3.1.0 or higher. We must install this new version and enable it temporarily for building Tensorflow Lite. 
 
 The Raspberry Pi GCC Toolchains Files are available on [SourceForge](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/) and on [Abhishek Thakur's github](https://github.com/abhiTronix/raspberry-pi-cross-compilers). We need the latest version of the [Native Compiler Toolchains](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/) which is [GCC10.3.0](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/) at the time of writing this note.
 
@@ -118,7 +118,7 @@ Here is a summary of the [instructions](https://github.com/abhiTronix/raspberry-
    export LD="$CXX"
    ```
 
- Abhishek has also instructions for a [permanent installation](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Native-Compiler:-Installation-Instructions#c2--permanent-installation) of the Toolchains.
+ Abhishek has also instructions for a [permanent installation](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Native-Compiler:-Installation-Instructions#c2--permanent-installation) of the Toolchains. 
 
 
 ## Build TensorFlow Lite with CMake
