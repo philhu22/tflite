@@ -36,6 +36,9 @@ Build TensorFlow Lite applications on Raspberry PI 4 devices using Visual Studio
     ```bash
     mkdir gcctoolchains
     cd gcctoolchains
+    ```
+    
+    ```bash
     wget "https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry Pi GCC Native-Compiler Toolchains/Stretch/GCC 10.3.0/Raspberry Pi 3A+, 3B+, 4/native-gcc-10.3.0-pi_3+.tar.gz"
 
     tar xf native-gcc-10.3.0-pi_3+.tar.gz
