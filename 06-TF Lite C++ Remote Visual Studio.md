@@ -32,13 +32,9 @@ Build TensorFlow Lite applications on Raspberry PI 4 devices using Visual Studio
 ![vs01](/assets/images/vs01.png)
 
 * Install on the device the [Raspberry Pi GCC Native Compiler Toolchains version v3.1.0](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/) or higher ([why](./04-TF%20Lite%20C++%20on%20Raspberry%20Pi.md#Update%20the%20CC%20Cross-Compiler%20Toolchains)). Here are the instructions to [install permanently](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Native-Compiler:-Installation-Instructions#c2--permanent-installation) (recommended) the toolchain v 3.1.0:
-<br/>
     ```bash
     mkdir gcctoolchains
     cd gcctoolchains
-    ```
-    
-    ```bash
     wget "https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry Pi GCC Native-Compiler Toolchains/Stretch/GCC 10.3.0/Raspberry Pi 3A+, 3B+, 4/native-gcc-10.3.0-pi_3+.tar.gz"
 
     tar xf native-gcc-10.3.0-pi_3+.tar.gz
@@ -61,7 +57,6 @@ Build TensorFlow Lite applications on Raspberry PI 4 devices using Visual Studio
     ```
   
 * Clone the TensorFlow repository on the Raspberry device (we do not want to copy theses files from the Windows host to the Raspberry device):
-  <br/>
     ```bash
     cd ~
     mkdir tensorflow
@@ -77,18 +72,15 @@ On your Visual Studio development host, prepare a new folder `minimal` with 2 fi
 
 Open this folder in Visual Studio. When you open a folder that contains a file `CMakeLists.txt`, Visual Studio understands it is a CMake project and it will create files to let you configure the CMake build and debugging (more information on [Microsoft Docs](https://docs.microsoft.com/en-us/cpp/linux/cmake-linux-configure?view=msvc-170))
 
-
 Edit CMakeLists.txt to make the following changes:
 
 1. Specify the path to the TensorFlow source on the Raspberry device:
-<br/>
     ```cmake
     set(TENSORFLOW_SOURCE_DIR "/home/toto/tensorflow/tensorflow_src" CACHE PATH
     "Directory that contains the TensorFlow project")
     ```
 
 2. Add the following compile definitions to avoid the gcc [compilation errors](./04-TF%20Lite%20C++%20on%20Raspberry%20Pi.md#Step%203.%20Fix%20includes)
-<br/>
     ```cmake
     set_directory_properties(PROPERTIES  
         COMPILE_DEFINITIONS "SSIZE_MAX=LONG_MAX;PATH_MAX=4096" )
