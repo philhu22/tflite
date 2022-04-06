@@ -17,7 +17,7 @@ Make a native C++ build of TensorFlow Lite on Raspberry Pi 4 and run the TensorF
 - [Native C++ Tensorflow Lite build on Raspberry Pi 4](#native-c-tensorflow-lite-build-on-raspberry-pi-4)
   - [Pre-installations steps](#pre-installations-steps)
     - [Update the environment](#update-the-environment)
-    - [Update the CC Cross-Compiler Toolchains](#update-the-cc-cross-compiler-toolchains)
+    - [Update the CC Native Compiler Toolchains](#update-the-cc-native-compiler-toolchains)
   - [Build TensorFlow Lite with CMake](#build-tensorflow-lite-with-cmake)
     - [Step 1. Clone TensorFlow repository](#step-1-clone-tensorflow-repository)
     - [Step 2. Run CMake tool](#step-2-run-cmake-tool)
@@ -56,8 +56,8 @@ Make a native C++ build of TensorFlow Lite on Raspberry Pi 4 and run the TensorF
    sudo apt update && sudo apt dist-upgrade
    sudo apt-get install build-essential gawk gcc g++ gfortran git texinfo bison  wget bzip2 libncurses-dev libssl-dev openssl zlib1g-dev
    ```
-### Update the CC Cross-Compiler Toolchains
-There is an [issue](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/90) with the installed Raspberry Pi GCC Compiler Toolchains for Bullseye that prevents to build Tensorflow Lite with gcc. This issue has been resolved in the Toolchains version v3.1.0 or higher. We must install this new version and enable it temporarily for building Tensorflow Lite. 
+### Update the CC Native Compiler Toolchains
+There is an [issue](https://github.com/abhiTronix/raspberry-pi-cross-compilers/issues/90) with the installed Raspberry Pi GCC Native Compiler Toolchains for Bullseye that prevents to build Tensorflow Lite with gcc. This issue has been resolved in the Toolchains version v3.1.0 or higher. We must install this new version and enable it temporarily for building Tensorflow Lite. 
 
 The Raspberry Pi GCC Toolchains Files are available on [SourceForge](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/) and on [Abhishek Thakur's github](https://github.com/abhiTronix/raspberry-pi-cross-compilers). We need the latest version of the [Native Compiler Toolchains](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/) which is [GCC10.3.0](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/) at the time of writing this note.
 
@@ -68,7 +68,7 @@ Here is a summary of the [instructions](https://github.com/abhiTronix/raspberry-
    ```bash
    mkdir gcctoolchains
    cd gcctoolchains
-   wget https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/GCC%2010.3.0/Raspberry%20Pi%203A%2B%2C%203B%2B%2C%204/native-gcc-10.3.0-pi_3%2B.tar.gz/download
+   wget "https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry Pi GCC Native-Compiler Toolchains/Stretch/GCC 10.3.0/Raspberry Pi 3A+, 3B+, 4/native-gcc-10.3.0-pi_3+.tar.gz"
    ```
 * Extract:
   <br/>
@@ -141,7 +141,7 @@ cmake ../tensorflow_src/tensorflow/lite
 cmake ../tensorflow_src/tensorflow/lite -DCMAKE_BUILD_TYPE=Debug
 ```
 ### Step 3. Fix includes
-There were several compilation errors the first time I launched the build. They were caused by constants being not found in 2 files (e.g. SSMAX_SIZE, PATH_MAX). 
+There were several compilation errors the first time I launched the build. They were caused by constants being not found in 2 files (`SSMAX_SIZE`, `PATH_MAX`). 
 
    1. 
       ```bash
