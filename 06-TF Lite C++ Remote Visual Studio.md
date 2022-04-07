@@ -22,13 +22,13 @@ Build TensorFlow Lite applications on Raspberry PI 4 devices using Visual Studio
     - [Visual Studio Linux development](#visual-studio-linux-development)
     - [GCC Toolchains](#gcc-toolchains)
     - [Clone TensorFlow](#clone-tensorflow)
-  - [Remote build & debug the minimal example](#remote-build-debug-the-minimal-example)
+  - [Remote build & debug the minimal example](#remote-build--debug-the-minimal-example)
     - [Create CMake project](#create-cmake-project)
     - [Add a remote device](#add-a-remote-device)
     - [CMake Configuration](#cmake-configuration)
     - [Toolchains CMake file](#toolchains-cmake-file)
     - [Build, Run, Debug](#build-run-debug)
-  - [Remote build & debug the label_image example](#remote-build-debug-the-label_image-example)
+  - [Remote build & debug the label_image example](#remote-build--debug-the-label_image-example)
 
 <!-- /code_chunk_output -->
 
@@ -39,7 +39,7 @@ Build TensorFlow Lite applications on Raspberry PI 4 devices using Visual Studio
 ![vs01](/assets/images/vs01.png)
 
 ### GCC Toolchains
-Install on the device the [Raspberry Pi GCC Native Compiler Toolchains version v3.1.0](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/) or higher ([why](./04-TF%20Lite%20C++%20on%20Raspberry%20Pi.md#Update%20the%20CC%20Cross-Compiler%20Toolchains)). Here are the instructions to [install permanently](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Native-Compiler:-Installation-Instructions#c2--permanent-installation) (recommended) the toolchain v 3.1.0:
+Install on the device the [Raspberry Pi GCC Native Compiler Toolchains version v3.1.0](https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Native-Compiler%20Toolchains/Bullseye/) or higher ([why](https://github.com/philhu22/tflite/blob/main/04-TF%20Lite%20C++%20on%20Raspberry%20Pi.md#update-the-cc-native-compiler-toolchains))). Here are the instructions to [install permanently](https://github.com/abhiTronix/raspberry-pi-cross-compilers/wiki/Native-Compiler:-Installation-Instructions#c2--permanent-installation) (recommended) the toolchain v 3.1.0:
   ```bash
   mkdir gcctoolchains
   cd gcctoolchains
@@ -89,7 +89,7 @@ Edit CMakeLists.txt to make the following changes:
     "Directory that contains the TensorFlow project")
     ```
 
-2. Add the following compile definitions to avoid the gcc [compilation errors](./04-TF%20Lite%20C++%20on%20Raspberry%20Pi.md#Step%203.%20Fix%20includes)
+2. Add the following compile definitions to avoid the gcc [compilation errors](https://github.com/philhu22/tflite/blob/main/04-TF%20Lite%20C++%20on%20Raspberry%20Pi.md#step-3-fix-includes)
     ```cmake
     set_directory_properties(PROPERTIES  
         COMPILE_DEFINITIONS "SSIZE_MAX=LONG_MAX;PATH_MAX=4096" )
@@ -128,7 +128,7 @@ target_link_libraries(minimal
 )
 ```
 ### Add a remote device
-In Visual Studio, add your Raspberry with its ssh credentials using `Tools\Options\Cross Platform` ([more]())
+In Visual Studio, add your Raspberry with its ssh credentials using `Tools\Options\Cross Platform` ([more](https://docs.microsoft.com/en-us/cpp/linux/connect-to-your-remote-linux-computer?view=msvc-170))
 
 
 ### CMake Configuration
@@ -335,9 +335,9 @@ Let's now repeat the steps explained above to build and debug the [TF Lite label
    ```
 
 6. It's now time to generate the CMake build files with the command 'Project\Delete Cache and Reconfigure', and next build the application with `Build All`. 
-7. When the build is done, select the target `labelimage`, add a breakpoint at the return statement in `label_image.cc`and press F5 to start debugging in Visual Studio. You should see results like this:
+7. When the build is done, select the target `labelimage`, add a breakpoint at the return statement in `label_image.cc` and press F5 to start debugging in Visual Studio. You should see results like this:
 
-![vs05](/assets/images/vs05.png)
+    ![vs05](/assets/images/vs05.png)
 
 
  
