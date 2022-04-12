@@ -22,13 +22,14 @@ Build TensorFlow Lite applications on Raspberry PI 4 devices using Visual Studio
     - [Visual Studio Linux development](#visual-studio-linux-development)
     - [GCC Toolchains](#gcc-toolchains)
     - [Clone TensorFlow](#clone-tensorflow)
-  - [Remote build & debug the minimal example](#remote-build--debug-the-minimal-example)
+  - [Build & debug the minimal example](#build-debug-the-minimal-example)
     - [Create CMake project](#create-cmake-project)
     - [Add a remote device](#add-a-remote-device)
     - [CMake Configuration](#cmake-configuration)
     - [Toolchains CMake file](#toolchains-cmake-file)
     - [Build, Run, Debug](#build-run-debug)
-  - [Remote build & debug the label_image example](#remote-build--debug-the-label_image-example)
+  - [Build & debug the label_image example](#build-debug-the-label_image-example)
+  - [Enable XNNPACK](#enable-xnnpack)
 
 <!-- /code_chunk_output -->
 
@@ -73,7 +74,7 @@ Clone the TensorFlow repository on the Raspberry device (we do not want to copy 
   git clone https://github.com/tensorflow/tensorflow.git tensorflow_src
   ```
  
-## Remote build & debug the minimal example
+## Build & debug the minimal example
 ### Create CMake project
 On your Visual Studio development host, prepare a new folder `minimal` with 2 files copied from the TensorFlow Lite [example repository](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/examples/minimal):
 - [minimal.cc](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/lite/examples/minimal/minimal.cc)
@@ -228,7 +229,7 @@ When the build is done, select the target `minimal` and press F5 to start debugg
 ![vs04](/assets/images/vs04.png)
 
 
-## Remote build & debug the label_image example
+## Build & debug the label_image example
 
 Let's now repeat the steps explained above to build and debug the [TF Lite label_image example](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/examples/label_image). 
 
@@ -339,6 +340,11 @@ Let's now repeat the steps explained above to build and debug the [TF Lite label
 
     ![vs05](/assets/images/vs05.png)
 
+## Enable XNNPACK
 
+ The [XNNPACK](https://github.com/google/XNNPACK) library is now [integrated](https://blog.tensorflow.org/2020/07/accelerating-tensorflow-lite-xnnpack-integration.html) into TensorFlow Lite and important performance improvement can be achieved by enabling the XNNPACK delegate. To enable XNNPACK, set `TFLITE_ENABLE_XNNPACK` to `ON` in CMakeSettings.json and regenerate the build files. Then `Rebuild All`. 
  
+ Launch the target `labelimage`. You should see that XNNPACK is used and that it improves significantly the inference performance:
+ 
+![vs06](/assets/images/vs06.png)
  

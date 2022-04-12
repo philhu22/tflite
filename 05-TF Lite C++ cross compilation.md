@@ -44,13 +44,13 @@ Then on your Windows host, open a WSL2 terminal and follow the [TensorFlow Lite 
 - Clone the TensorFlow repository
    <br/>
     ```bash   
-    cd ~
+    cd ~/tensorflow
     git clone https://github.com/tensorflow/tensorflow.git tensorflow_src
     ```
 - Run CMake tool in the build directory
   <br/>
   ```bash
-  cd tensorflow
+  cd ~/tensorflow
   mkdir tflite_build_arm
   cd tflite_build_arm
 
